@@ -1,2 +1,1 @@
-const a = 1;
-const b = "наша ветка";
+console.log('hello');
