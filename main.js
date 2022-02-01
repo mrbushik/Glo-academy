@@ -14,6 +14,11 @@ let workerRollback = (fullPrice * (rollback / 100));
 let servisePresentPrise = fullPrice - workerRollback;
 servisePresentPrise = (Math.ceil(servisePresentPrise));
 let allServisePrices;
+
+const showTypeOf = function (variable) {
+    console.log(variable, typeof variable);
+}
+
 const getRollbackMessage = function (price) {
     if (price >= 30000) {
         return "даем скидку 10%";
@@ -28,20 +33,55 @@ const getRollbackMessage = function (price) {
         return "Что-то пошло не так";
     }
 }
-// const getAllServisePrices = function (price1, price2) {
-//     return price1 + price2;
-// }
 
-// console.log(getAllServisePrices(servise1Price, servise2Price + " test1111"));
-// allServisePrices = getAllServisePrices();
 
-console.log(getRollbackMessage(fullPrice))
-console.log('Тип данных title: ' + typeof title);
-console.log('Тип данных fullPrice: ' + typeof fullPrice);
-console.log('Тип данных adaptive: ' + typeof adaptive);
+//первое заданние 4 урок
+//функция вычисления дополнительных услуг
+const getAllServisePrices = function (price1, price2) {
+    return price1 + price2;
+}
+
+//вычисление полной стоимости
+function getFullPrice() {
+    return screenPrice + allServisePrices;
+}
+
+//вычисление стоимости с учетом отката
+const getServicePresentPrices = function () {
+    return fullPrice - workerRollback;
+}
+
+
+allServisePrices = getAllServisePrices(servise1Price, servise2Price);
+fullPrice = getFullPrice();
+showTypeOf(title);
+showTypeOf(screenPrice);
+showTypeOf(adaptive);
 console.log(screens.toLowerCase().split(' '));
-console.log("Итоговая стоимость с учетом отката и округлением вверх " + servisePresentPrise);
-console.log('Откат посреднику за работу: ' + Math.round(workerRollback));
-console.log('Длина строки screens = ' + screens.length);
-console.log('Стоимость верстки экранов ' + screenPrice +
-    '₽ Стоимость разработки сайта ' + fullPrice + '₽');
+console.log(getRollbackMessage(fullPrice));
+console.log("Стоимость с учетом отката сотруднику = " + getServicePresentPrices());
+
+function getTitle() {
+    let arrTitle = title.split(" ");
+    let stringResult = "";
+
+    for (let i = 0; i < arrTitle.length; i++) {
+        let titleArr = arrTitle[i];
+        let titleFirstLetter = titleArr.substring(0, 1).toUpperCase();
+        let LeftoversTitle = titleArr.substring(1, titleArr.length);
+        stringResult = titleFirstLetter + LeftoversTitle + " ";
+
+    }
+    //надо чтоб еще остальные буквы делела строчными 
+    console.log(stringResult);
+}
+
+getTitle();
+
+function titleCase(str) {
+    return str.split(' ').map(item =>
+        item.charAt(0).toUpperCase() + item.slice(1).toLowerCase()).join(' ');
+    title = titleCase;
+}
+titleCase();
+console.log(title);
