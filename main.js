@@ -56,10 +56,10 @@ const getServicePresentPrices = function () {
     return fullPrice - workerRollback;
 }
 
-getTitle(title);
+
 allServisePrices = getAllServisePrices(servise1Price, servise2Price);
 fullPrice = getFullPrice();
-showTypeOf(title);
+showTypeOf(getTitle(title));
 showTypeOf(screenPrice);
 showTypeOf(adaptive);
 console.log(screens.toLowerCase().split(' '));
