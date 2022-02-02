@@ -46,12 +46,17 @@ function getFullPrice() {
     return screenPrice + allServisePrices;
 }
 
+// Вывод первой большой буквы остальные маленькие 
+const getTitle = function (a) {
+    a = a.trim();
+    return a[0].toUpperCase() + a.slice(1).toLowerCase();
+}
 //вычисление стоимости с учетом отката
 const getServicePresentPrices = function () {
     return fullPrice - workerRollback;
 }
 
-
+getTitle(title);
 allServisePrices = getAllServisePrices(servise1Price, servise2Price);
 fullPrice = getFullPrice();
 showTypeOf(title);
@@ -60,28 +65,3 @@ showTypeOf(adaptive);
 console.log(screens.toLowerCase().split(' '));
 console.log(getRollbackMessage(fullPrice));
 console.log("Стоимость с учетом отката сотруднику = " + getServicePresentPrices());
-
-function getTitle() {
-    let arrTitle = title.split(" ");
-    let stringResult = "";
-
-    for (let i = 0; i < arrTitle.length; i++) {
-        let titleArr = arrTitle[i];
-        let titleFirstLetter = titleArr.substring(0, 1).toUpperCase();
-        let LeftoversTitle = titleArr.substring(1, titleArr.length);
-        stringResult = titleFirstLetter + LeftoversTitle + " ";
-
-    }
-    //надо чтоб еще остальные буквы делела строчными 
-    console.log(stringResult);
-}
-
-getTitle();
-
-function titleCase(str) {
-    return str.split(' ').map(item =>
-        item.charAt(0).toUpperCase() + item.slice(1).toLowerCase()).join(' ');
-    title = titleCase;
-}
-titleCase();
-console.log(title);
