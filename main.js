@@ -1,23 +1,63 @@
 'use strict';
-let title = prompt('как называется ваш проект', "КаЛьКулятор");
-let screens = prompt('какие типы экранов надо разработать?',
-    "Простые, Сложные, Интерактивные");
-let screenPrice = +prompt('Сколько будет стоить данная работа?', 5000);
-let adaptive = confirm("Нужен ли адаптив?");
-let service1 = prompt('Какие дополнительные услуги еще нужны?', "домен");
-let servise1Price = +prompt('сколько это будет стоить?', 100);
-let service2 = prompt('Какие дополнительные услуги еще нужны?',
-    'создание слайдера');
-let servise2Price = +prompt('сколько это будет стоить?', 500);
-let fullPrice = screenPrice + servise1Price + servise2Price;
+// let title = prompt('как называется ваш проект', "КаЛьКулятор");
+// let screens = prompt('какие типы экранов надо разработать?',
+//     "Простые, Сложные, Интерактивные");
+// let screenPrice = +prompt('Сколько будет стоить данная работа?', 5000);
+// let adaptive = confirm("Нужен ли адаптив?");
+
+
+// let service1 = prompt('Какие дополнительные услуги еще нужны?', "домен");
+// let servise1Price = +prompt('сколько это будет стоить?', 100);
+// let service2 = prompt('Какие дополнительные услуги еще нужны?', "хостинг");
+//     'создание слайдера');
+// let servise2Price = +prompt('сколько это будет стоить?', 500);
+let title;
+let screens;
+let screenPrice;
+let adaptive;
+let fullPrice;
 let rollback = "16";
 let workerRollback = fullPrice * (rollback / 100);
 let servisePresentPrise = Math.ceil(fullPrice - workerRollback);
 let allServisePrices;
+let service1;
+let service2;
 
+const isNumber = function (num) {
+    return !isNaN(parseFloat(num)) && isFinite(num);
+}
+console.log(!isNaN(parseFloat("10")) && isFinite("10"));
 const showTypeOf = function (variable) {
     console.log(variable, typeof variable);
 }
+
+const asking = function () {
+    title = prompt('как называется ваш проект', "КаЛьКулятор");
+    screens = prompt('какие типы экранов надо разработать?',
+        "Простые, Сложные, Интерактивные");
+    screenPrice = prompt('Сколько будет стоить данная работа?');
+    while (!isNumber(screenPrice)) {
+        screenPrice = prompt('Сколько будет стоить данная работа?');
+    }
+
+    adaptive = confirm("Нужен ли адаптив?");
+}
+
+//функция вычисления дополнительных услуг
+//выводит тип undefined
+const getAllServisePrices = function () {
+    let sum = 0;
+    for (let i = 0; i < 2; i++) {
+        if (i === 0) {
+            service1 = prompt('Какие дополнительные услуги еще нужны?', "домен");
+        } else if (i === 1) {
+            service2 = prompt('Какие дополнительные услуги еще нужны?', "хостинг");
+        }
+        sum += +prompt('сколько это будет стоить?', 100);
+    }
+    return sum
+}
+
 
 const getRollbackMessage = function (price) {
     if (price >= 30000) {
@@ -35,11 +75,9 @@ const getRollbackMessage = function (price) {
 }
 
 
-//первое заданние 4 урок
-//функция вычисления дополнительных услуг
-const getAllServisePrices = function (price1, price2) {
-    return price1 + price2;
-}
+
+
+
 
 //вычисление полной стоимости
 function getFullPrice() {
@@ -56,12 +94,15 @@ const getServicePresentPrices = function () {
     return fullPrice - workerRollback;
 }
 
-
-allServisePrices = getAllServisePrices(servise1Price, servise2Price);
+asking();
+getAllServisePrices();
 fullPrice = getFullPrice();
 showTypeOf(`${getTitle(title)}`);
 showTypeOf(screenPrice);
 showTypeOf(adaptive);
+
+console.log("allServicePrises", allServisePrices)
+
 console.log(screens.toLowerCase().split(' '));
 console.log(getRollbackMessage(fullPrice));
 console.log("Стоимость с учетом отката сотруднику = " + getServicePresentPrices());
