@@ -1,18 +1,18 @@
 'use strict';
-let title = prompt('как называется ваш проект', "title");
+let title = prompt('как называется ваш проект', "КаЛьКулятор");
 let screens = prompt('какие типы экранов надо разработать?',
     "Простые, Сложные, Интерактивные");
-let screenPrice = +prompt('Сколько будет стоить данная работа?', "15000");
+let screenPrice = +prompt('Сколько будет стоить данная работа?', 5000);
 let adaptive = confirm("Нужен ли адаптив?");
 let service1 = prompt('Какие дополнительные услуги еще нужны?', "домен");
-let servise1Price = +prompt('сколько это будет стоить?', "100");
-let service2 = prompt('Какие дополнительные услуги еще нужны?', 'создание слайдера');
-let servise2Price = +prompt('сколько это будет стоить?', '500');
+let servise1Price = +prompt('сколько это будет стоить?', 100);
+let service2 = prompt('Какие дополнительные услуги еще нужны?',
+    'создание слайдера');
+let servise2Price = +prompt('сколько это будет стоить?', 500);
 let fullPrice = screenPrice + servise1Price + servise2Price;
 let rollback = "16";
-let workerRollback = (fullPrice * (rollback / 100));
-let servisePresentPrise = fullPrice - workerRollback;
-servisePresentPrise = (Math.ceil(servisePresentPrise));
+let workerRollback = fullPrice * (rollback / 100);
+let servisePresentPrise = Math.ceil(fullPrice - workerRollback);
 let allServisePrices;
 
 const showTypeOf = function (variable) {
@@ -59,7 +59,7 @@ const getServicePresentPrices = function () {
 
 allServisePrices = getAllServisePrices(servise1Price, servise2Price);
 fullPrice = getFullPrice();
-showTypeOf(getTitle(title));
+showTypeOf(`${getTitle(title)}`);
 showTypeOf(screenPrice);
 showTypeOf(adaptive);
 console.log(screens.toLowerCase().split(' '));
