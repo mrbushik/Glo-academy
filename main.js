@@ -37,17 +37,22 @@ const asking = function () {
 //функция вычисления дополнительных услуг
 //выводит тип undefined
 const getAllServisePrices = function () {
-    let prise;
+    let prise = 0;
     for (let i = 0; i < 2; i++) {
         if (i === 0) {
             service1 = prompt('Какие дополнительные услуги еще нужны?', "домен");
         } else if (i === 1) {
             service2 = prompt('Какие дополнительные услуги еще нужны?', "хостинг");
         }
+        // do {
+        //     prise = +prompt('сколько это будет стоить?', 100);
+        //     sum += prise;
+        // } while (!isNumber(prise));
+        prise = prompt('Сколько это будет стоить?');
         do {
-            prise = +prompt('сколько это будет стоить?', 100);
-            sum += prise;
+            prise = prompt('Сколько это будет стоить?');
         } while (!isNumber(prise));
+
     }
 
     return +sum;
