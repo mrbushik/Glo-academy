@@ -44,14 +44,6 @@ const getAllServisePrices = function () {
         } else if (i === 1) {
             service2 = prompt('Какие дополнительные услуги еще нужны?', "хостинг");
         }
-        // sum += prompt('сколько это будет стоить?', 100);
-        // while (!isNumber(sum)) {
-        //     sum += prompt('сколько это будет стоить?', 100);
-        // }
-        // sum += +prompt("Сколько это будет стоить?");
-        // while (isNumber(sum)) {
-        //     sum = prompt("Сколько это будет стоить?");
-        // }
         do {
             prise = +prompt('сколько это будет стоить?', 100);
             sum += prise;
