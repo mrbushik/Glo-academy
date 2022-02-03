@@ -1,16 +1,4 @@
 'use strict';
-// let title = prompt('как называется ваш проект', "КаЛьКулятор");
-// let screens = prompt('какие типы экранов надо разработать?',
-//     "Простые, Сложные, Интерактивные");
-// let screenPrice = +prompt('Сколько будет стоить данная работа?', 5000);
-// let adaptive = confirm("Нужен ли адаптив?");
-
-
-// let service1 = prompt('Какие дополнительные услуги еще нужны?', "домен");
-// let servise1Price = +prompt('сколько это будет стоить?', 100);
-// let service2 = prompt('Какие дополнительные услуги еще нужны?', "хостинг");
-//     'создание слайдера');
-// let servise2Price = +prompt('сколько это будет стоить?', 500);
 let title;
 let screens;
 let screenPrice;
@@ -22,11 +10,12 @@ let servisePresentPrise = Math.ceil(fullPrice - workerRollback);
 let allServisePrices;
 let service1;
 let service2;
+let sum = 0;
 
 const isNumber = function (num) {
     return !isNaN(parseFloat(num)) && isFinite(num);
 }
-console.log(!isNaN(parseFloat("10")) && isFinite("10"));
+//вывод типа переменной
 const showTypeOf = function (variable) {
     console.log(variable, typeof variable);
 }
@@ -37,7 +26,7 @@ const asking = function () {
         "Простые, Сложные, Интерактивные");
     screenPrice = prompt('Сколько будет стоить данная работа?');
     while (!isNumber(screenPrice)) {
-        screenPrice = prompt('Сколько будет стоить данная работа?');
+        screenPrice = +prompt('Сколько будет стоить данная работа?', 15000);
     }
 
     adaptive = confirm("Нужен ли адаптив?");
@@ -46,7 +35,6 @@ const asking = function () {
 //функция вычисления дополнительных услуг
 //выводит тип undefined
 const getAllServisePrices = function () {
-    let sum = 0;
     for (let i = 0; i < 2; i++) {
         if (i === 0) {
             service1 = prompt('Какие дополнительные услуги еще нужны?', "домен");
@@ -55,7 +43,7 @@ const getAllServisePrices = function () {
         }
         sum += +prompt('сколько это будет стоить?', 100);
     }
-    return sum
+    return sum;
 }
 
 
@@ -74,14 +62,9 @@ const getRollbackMessage = function (price) {
     }
 }
 
-
-
-
-
-
 //вычисление полной стоимости
 function getFullPrice() {
-    return screenPrice + allServisePrices;
+    return screenPrice + sum;
 }
 
 // Вывод первой большой буквы остальные маленькие 
@@ -93,16 +76,15 @@ const getTitle = function (a) {
 const getServicePresentPrices = function () {
     return fullPrice - workerRollback;
 }
-
+console.log("" + workerRollback)
 asking();
-getAllServisePrices();
+getAllServisePrices(allServisePrices);
 fullPrice = getFullPrice();
 showTypeOf(`${getTitle(title)}`);
 showTypeOf(screenPrice);
 showTypeOf(adaptive);
-
-console.log("allServicePrises", allServisePrices)
-
+console.log(typeof screenPrice + "ssssss")
+console.log(fullPrice + "цена ");
 console.log(screens.toLowerCase().split(' '));
 console.log(getRollbackMessage(fullPrice));
 console.log("Стоимость с учетом отката сотруднику = " + getServicePresentPrices());
