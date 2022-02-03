@@ -76,15 +76,12 @@ const getTitle = function (a) {
 const getServicePresentPrices = function () {
     return fullPrice - workerRollback;
 }
-console.log("" + workerRollback)
 asking();
 getAllServisePrices(allServisePrices);
 fullPrice = getFullPrice();
 showTypeOf(`${getTitle(title)}`);
 showTypeOf(screenPrice);
 showTypeOf(adaptive);
-console.log(typeof screenPrice + "ssssss")
-console.log(fullPrice + "цена ");
 console.log(screens.toLowerCase().split(' '));
 console.log(getRollbackMessage(fullPrice));
 console.log("Стоимость с учетом отката сотруднику = " + getServicePresentPrices());
