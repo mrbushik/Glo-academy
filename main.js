@@ -1,7 +1,7 @@
 'use strict';
 const isNumber = function (num) {
     return !isNaN(parseFloat(num)) && isFinite(num);
-}
+};
 
 const appData = {
     title: '',
@@ -41,7 +41,7 @@ const appData = {
                 appData.service2 = prompt('Какие дополнительные услуги еще нужны?', "хостинг");
             }
             do {
-                prise = prompt('Сколько это будет стоить?');
+                prise = prompt('Сколько это будет стоить?', 1000);
             } while (!isNumber(prise));
             appData.sum += +prise;
         }
@@ -81,6 +81,13 @@ const appData = {
     getServicePresentPrices: function () {
         return appData.fullPrice - appData.workerRollback;
     },
+    //вывод информации об обьекте
+    logger: function () {
+        for (let key in appData) {
+            console.log('Ключ: ' + key + ' ' + 'Значение ' + appData[key]);
+        }
+
+    },
     start: function () {
         appData.asking();
         appData.getAllServisePrices();
@@ -88,39 +95,12 @@ const appData = {
         appData.sumRollback();
         appData.allServisePrices = appData.getServicePresentPrices();
         appData.title = appData.getTitle(appData.title);
-
+        appData.logger();
+        console.log(appData.title);
+        console.log(this.getRollbackMessage(appData.fullPrice));
+        console.log('Стоимость с учетом отката сотруднику = ' + this.getServicePresentPrices());
     }
-}
-
-
-//вопросы 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+};
 
 
 appData.start();
-
-
-console.log(appData.title);
-console.log(appData.sum);
-console.log(appData.workerRollback)
-console.log(appData.allServisePrices)
-
-
-
-
-// console.log(screens.toLowerCase().split(' '));
-// console.log(getRollbackMessage(fullPrice));
-// console.log("Стоимость с учетом отката сотруднику = " + getServicePresentPrices());
