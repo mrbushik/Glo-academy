@@ -1,6 +1,6 @@
 'use strict';
 const isNumber = function (num) {
-    return !isNaN(parseFloat(num)) && isFinite(num);
+    return !isNaN(parseFloat(num)) && isFinite(num) && !(/\s/.test(num));
 };
 
 const appData = {
@@ -16,18 +16,19 @@ const appData = {
     service1: 0,
     service2: 0,
     sum: 0,
+
+
     //проверка на число
-
-
     asking: function () {
         appData.title = prompt('как называется ваш проект', "КаЛьКулятор");
         appData.screens = prompt('какие типы экранов надо разработать?',
             "Простые, Сложные, Интерактивные");
         do {
-            appData.screenPrice = +prompt('Сколько будет стоить данная работа?', 15000);
+            appData.screenPrice = prompt('Сколько будет стоить данная работа?', 15000);
         } while (!isNumber(appData.screenPrice));
 
         appData.adaptive = confirm("Нужен ли адаптив?");
+
     },
 
     //функция вычисления дополнительных услуг
