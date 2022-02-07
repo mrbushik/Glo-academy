@@ -1,6 +1,6 @@
 'use strict';
 const isNumber = function (num) {
-    return !isNaN(parseFloat(num)) && isFinite(num) && !(/\s/.test(num));
+    return !isNaN(parseFloat(num)) && isFinite(num);
 };
 
 const appData = {
@@ -16,9 +16,9 @@ const appData = {
     service1: 0,
     service2: 0,
     sum: 0,
-
-
     //проверка на число
+
+
     asking: function () {
         appData.title = prompt('как называется ваш проект', "КаЛьКулятор");
         appData.screens = prompt('какие типы экранов надо разработать?',
@@ -28,7 +28,6 @@ const appData = {
         } while (!isNumber(appData.screenPrice));
 
         appData.adaptive = confirm("Нужен ли адаптив?");
-
     },
 
     //функция вычисления дополнительных услуг
@@ -67,7 +66,7 @@ const appData = {
 
     //вычисление полной стоимости
     getFullPrice() {
-        return appData.screenPrice + appData.sum;
+        return +appData.screenPrice + appData.sum;
     },
     //откат работнику
     sumRollback: function () {
@@ -76,11 +75,11 @@ const appData = {
     // Вывод первой большой буквы остальные маленькие 
     getTitle: function (a) {
         a = a.trim();
-        return a[0].toUpperCase() + a.slice(1).toLowerCase();
+        appData.title = a[0].toUpperCase() + a.slice(1).toLowerCase();
     },
     //вычисление стоимости с учетом отката
     getServicePresentPrices: function () {
-        return appData.fullPrice - appData.workerRollback;
+        appData.allServisePrices = appData.fullPrice - appData.workerRollback;
     },
     //вывод информации об обьекте
     logger: function () {
@@ -94,12 +93,12 @@ const appData = {
         appData.getAllServisePrices();
         appData.fullPrice = appData.getFullPrice();
         appData.sumRollback();
-        appData.allServisePrices = appData.getServicePresentPrices();
-        appData.title = appData.getTitle(appData.title);
+        appData.getServicePresentPrices();
+        appData.getTitle(appData.title);
         appData.logger();
         console.log(appData.title);
         console.log(this.getRollbackMessage(appData.fullPrice));
-        console.log('Стоимость с учетом отката сотруднику = ' + this.getServicePresentPrices());
+        console.log('Стоимость с учетом отката сотруднику = ' + appData.allServisePrices);
     }
 };
 
