@@ -2,10 +2,14 @@
 const isNumber = function (num) {
     return !isNaN(parseFloat(num)) && isFinite(num);
 };
+//проверка на строку 
+const isString = function (num) {
+    return isNaN((num));
+};
 
 const appData = {
     title: '',
-    screens: '',
+    screens: [],
     screenPrice: 0,
     adaptive: true,
     fullPrice: 0,
@@ -13,43 +17,63 @@ const appData = {
     workerRollback: 0,
     servisePresentPrise: 0,
     allServisePrices: 0,
-    service1: 0,
-    service2: 0,
+    services: {},
     sum: 0,
     //проверка на число
 
 
     asking: function () {
-        appData.title = prompt('как называется ваш проект', "КаЛьКулятор");
-        appData.screens = prompt('какие типы экранов надо разработать?',
-            "Простые, Сложные, Интерактивные");
         do {
-            appData.screenPrice = prompt('Сколько будет стоить данная работа?', 15000);
-        } while (!isNumber(appData.screenPrice));
+            appData.title = prompt('как называется ваш проект', "КаЛьКулятор");
+        } while (!isString(appData.title));
 
-        appData.adaptive = confirm("Нужен ли адаптив?");
-    },
 
-    //функция вычисления дополнительных услуг
-    //выводит тип undefined
-    getAllServisePrices: function () {
-        let prise = 0;
         for (let i = 0; i < 2; i++) {
-            if (i === 0) {
-                appData.service1 = prompt('Какие дополнительные услуги еще нужны?', "домен");
-            } else if (i === 1) {
-                appData.service2 = prompt('Какие дополнительные услуги еще нужны?', "хостинг");
-            }
+            let name = '';
+            let price = 0;
             do {
-                prise = prompt('Сколько это будет стоить?', 1000);
-            } while (!isNumber(prise));
-            appData.sum += +prise;
+                name = prompt('какие типы экранов надо разработать?',
+                    "Простые");
+            } while (!isString(name));
+
+            do {
+                price = prompt('Сколько будет стоить данная работа?', 15000);
+            } while (!isNumber(price));
+            appData.screens.push({
+                id: i,
+                name: name,
+                price: price
+            });
+
         }
 
-        return +appData.sum;
+        appData.adaptive = confirm("Нужен ли адаптив?");
+        for (let i = 0; i < 2; i++) {
+            let price = 0;
+            let name = '';
+            do {
+                name = prompt('Какие дополнительные услуги еще нужны?', "домен");
+            } while (!isString(name));
+
+            do {
+                price = prompt('Сколько это будет стоить?', 1000);
+            } while (!isNumber(price));
+            appData.services[name] = +price;
+        }
     },
+    addPrices: function () {
+        for (let screen of appData.screens) {
+            appData.screenPrice += +screen.price;
+        }
+        for (let key in appData.services) {
+            appData.allServisePrices += appData.services;
+        }
+    },
+    //функция вычисления дополнительных услуг
+
     //вывод скидки
     getRollbackMessage: function (price) {
+        let sum = 0;
         if (price >= 30000) {
             return "даем скидку 10%";
 
@@ -66,7 +90,7 @@ const appData = {
 
     //вычисление полной стоимости
     getFullPrice() {
-        return +appData.screenPrice + appData.sum;
+        appData.fullPrice = +appData.screenPrice + appData.sum;
     },
     //откат работнику
     sumRollback: function () {
@@ -83,22 +107,21 @@ const appData = {
     },
     //вывод информации об обьекте
     logger: function () {
-        for (let key in appData) {
-            console.log('Ключ: ' + key + ' ' + 'Значение ' + appData[key]);
-        }
+        console.log(appData.title);
+        console.log(appData.getRollbackMessage(appData.fullPrice));
+        console.log('Стоимость с учетом отката сотруднику = ' + appData.allServisePrices);
 
     },
     start: function () {
         appData.asking();
-        appData.getAllServisePrices();
-        appData.fullPrice = appData.getFullPrice();
+        this.addPrices();
+        appData.getFullPrice();
         appData.sumRollback();
         appData.getServicePresentPrices();
         appData.getTitle(appData.title);
         appData.logger();
-        console.log(appData.title);
-        console.log(this.getRollbackMessage(appData.fullPrice));
-        console.log('Стоимость с учетом отката сотруднику = ' + appData.allServisePrices);
+
+
     }
 };
 
