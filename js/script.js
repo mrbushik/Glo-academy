@@ -1,4 +1,56 @@
 'use strict';
+//получем загаловок "Калькулятор верстки"
+const title = document.getElementsByTagName('h1')[0];
+
+
+//получаем кнопки рассчитать и сброс
+const calculate = document.getElementsByClassName('handler_btn');
+
+
+// получение кнопки +
+const screenBtn = document.querySelector('.screen-btn');
+
+
+//получение элементов с классом other-items
+const otherItemsPercent = document.querySelectorAll('.other-items' && '.percent');
+const otherItemsNumber = document.querySelectorAll('.other-items' && '.number');
+
+
+//Получить input type=range
+const rollbackInput = document.querySelector('.rollback  [type=range]');
+
+
+//Получить span с классом range-value
+const rollbackValue = document.querySelector('.rollback .range-value');
+
+
+//Получить все инпуты с классом total-input
+const totalValueZero = document.getElementsByClassName('total-input')[0];
+const totalValueFirst = document.getElementsByClassName('total-input')[1];
+const totalValueSecond = document.getElementsByClassName('total-input')[2];
+const totalValueThird = document.getElementsByClassName('total-input')[3];
+const totalValueFourth = document.getElementsByClassName('total-input')[4];
+
+//Получить все блоки с классом screen
+let screenBloks = document.querySelectorAll('.screen');
+
+
+//оставил логи здесь для удобства проверки чтоб не вводить данные в модалки 
+console.log(title.textContent);
+console.log(calculate);
+console.log(screenBtn);
+console.log(otherItemsNumber);
+console.log(otherItemsPercent);
+console.log(rollbackInput);
+console.log(rollbackValue);
+console.log(totalValueZero);
+console.log(totalValueFirst);
+console.log(totalValueSecond);
+console.log(totalValueThird);
+console.log(totalValueFourth);
+console.log(screenBloks);
+
+
 const isNumber = function (num) {
     return !isNaN(parseFloat(num)) && isFinite(num);
 };
@@ -124,6 +176,3 @@ const appData = {
 
     }
 };
-
-
-appData.start();
