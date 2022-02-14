@@ -60,7 +60,7 @@ const appData = {
     },
     allCountScreens: function () {
         if (appData.addScreens() !== true) {
-            startBtn.removeEventListener('click', appData.allCountScreens)
+            startBtn.removeEventListener('click', appData.allCountScreens);
             startBtn.style.opacity = '0.5';
         } else {
             appData.start();
@@ -91,6 +91,7 @@ const appData = {
         }
     },
     addScreenBlock: function () {
+        screens = document.querySelectorAll(".screen");
         const cloneScreen = screens[0].cloneNode(true);
         screens[screens.length - 1].after(cloneScreen);
 
