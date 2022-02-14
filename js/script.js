@@ -48,7 +48,7 @@ const appData = {
     fullPrice: 0,
     servicePercentPrice: 0,
     allCount: 0,
-    rollback: 10,
+    rollback: 0,
     init: function () {
         appData.addTitle();
         startBtn.addEventListener('click', appData.allCountScreens);
@@ -60,12 +60,14 @@ const appData = {
     },
     allCountScreens: function () {
         if (appData.addScreens() !== true) {
-            alert('Вырерите тип экрана или впишите стоимость');
+            startBtn.removeEventListener('click', appData.allCountScreens)
+            startBtn.style.opacity = '0.5';
         } else {
             appData.start();
         }
     },
     addScreens: function () {
+
         appData.screens.length = 0;
         screens = document.querySelectorAll('.screen');
 
@@ -91,6 +93,7 @@ const appData = {
     addScreenBlock: function () {
         const cloneScreen = screens[0].cloneNode(true);
         screens[screens.length - 1].after(cloneScreen);
+
     },
     addServices: function () {
         otherItemsPercent.forEach(function (item) {
