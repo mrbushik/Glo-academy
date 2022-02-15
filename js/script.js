@@ -58,7 +58,7 @@ const appData = {
     addTitle: function () {
         document.title = title.textContent;
     },
-    allCountScreens: function () {
+    allCountScreens: () => {
         if (appData.addScreens() !== true) {
             startBtn.removeEventListener('click', appData.allCountScreens);
             startBtn.style.opacity = '0.5';
@@ -66,7 +66,7 @@ const appData = {
             appData.start();
         }
     },
-    addScreens: function () {
+    addScreens: () => {
 
         appData.screens.length = 0;
         screens = document.querySelectorAll('.screen');
@@ -90,13 +90,15 @@ const appData = {
             return true;
         }
     },
-    addScreenBlock: function () {
+    addScreenBlock: () => {
         screens = document.querySelectorAll(".screen");
         const cloneScreen = screens[0].cloneNode(true);
         screens[screens.length - 1].after(cloneScreen);
 
+
+
     },
-    addServices: function () {
+    addServices: () => {
         otherItemsPercent.forEach(function (item) {
             const check = item.querySelector('input[type=checkbox]');
             const label = item.querySelector('label');
@@ -117,7 +119,7 @@ const appData = {
             }
         });
     },
-    addPrices: function () {
+    addPrices: () => {
         for (let screen of appData.screens) {
             appData.screenPrice += +screen.price;
         }
@@ -139,24 +141,24 @@ const appData = {
         appData.servicePercentPrice = +appData.fullPrice - (appData.fullPrice * (appData.rollback / 100));
         totalCountRollback.value = appData.servicePercentPrice;
     },
-    showResult: function () {
+    showResult: () => {
         total.value = appData.screenPrice;
         totalCountOther.value = appData.servicePricesPercent + appData.servicePricesNumber;
         fullTotalCount.value = appData.fullPrice;
         totalCount.value = appData.allCount;
     },
-    addRollback: function () {
+    addRollback: () => {
         appData.rollback = +rollbackInput.value;
         rollbackValue.textContent = appData.rollback + "%";
     },
-    start: function () {
+    start: () => {
         appData.addScreens();
         appData.addServices();
         appData.addPrices();
         appData.showResult();
         appData.logger();
     },
-    logger: function () {
+    logger: () => {
         console.log(screens);
     }
 };
