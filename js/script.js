@@ -50,17 +50,17 @@ const appData = {
     allCount: 0,
     rollback: 0,
     init: function () {
-        appData.addTitle();
-        startBtn.addEventListener('click', appData.allCountScreens);
-        buttonPlus.addEventListener('click', appData.addScreenBlock);
-        rollbackInput.addEventListener('input', appData.addRollback);
+        this.addTitle();
+        startBtn.addEventListener('click', this.allCountScreens);
+        buttonPlus.addEventListener('click', this.addScreenBlock);
+        rollbackInput.addEventListener('input', this.addRollback);
     },
     addTitle: function () {
         document.title = title.textContent;
     },
     allCountScreens: () => {
         if (appData.addScreens() !== true) {
-            startBtn.removeEventListener('click', appData.allCountScreens);
+            startBtn.removeEventListener('click', this.allCountScreens);
             startBtn.style.opacity = '0.5';
         } else {
             appData.start();
