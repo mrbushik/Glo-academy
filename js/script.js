@@ -71,7 +71,7 @@ const appData = {
         appData.screens.length = 0;
         screens = document.querySelectorAll('.screen');
 
-        screens.forEach(function (screen, index) {
+        screens.forEach((screen, index) => {
             const select = screen.querySelector('select');
             const input = screen.querySelector('input');
             const selectName = select.options[select.selectedIndex].textContent;
@@ -99,7 +99,7 @@ const appData = {
 
     },
     addServices: () => {
-        otherItemsPercent.forEach(function (item) {
+        otherItemsPercent.forEach((item) => {
             const check = item.querySelector('input[type=checkbox]');
             const label = item.querySelector('label');
             const input = item.querySelector('input[type=text]');
@@ -109,7 +109,7 @@ const appData = {
             }
         });
 
-        otherItemsNumber.forEach(function (item) {
+        otherItemsNumber.forEach((item) => {
             const check = item.querySelector('input[type=checkbox]');
             const label = item.querySelector('label');
             const input = item.querySelector('input[type=text]');
@@ -132,7 +132,7 @@ const appData = {
             appData.servicePricesPercent += appData.screenPrice * (appData.servicesPercent[key] / 100);
         }
 
-        appData.screens.forEach(function (item) {
+        appData.screens.forEach((item) => {
             appData.allCount += +item.count;
         });
 
