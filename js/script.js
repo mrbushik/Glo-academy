@@ -51,10 +51,10 @@ const appData = {
     rollback: 0,
     init: function () {
         this.addTitle();
-        startBtn.addEventListener('click', this.allCountScreens);
-        resetBtn.addEventListener('click', this.resetValue);
-        buttonPlus.addEventListener('click', this.addScreenBlock);
-        rollbackInput.addEventListener('input', this.addRollback);
+        startBtn.addEventListener('click', this.allCountScreens.bind(this));
+        resetBtn.addEventListener('click', this.resetValue.bind(this));
+        buttonPlus.addEventListener('click', this.addScreenBlock.bind(this));
+        rollbackInput.addEventListener('input', this.addRollback.bind(this));
     },
     addTitle: function () {
         document.title = title.textContent;
@@ -189,11 +189,11 @@ const appData = {
         rollbackValue.textContent = appData.rollback + "%";
     },
     start: function () {
-        appData.addScreens();
-        appData.addServices();
-        appData.addPrices();
-        appData.showResult();
-        appData.logger();
+        this.addScreens();
+        this.addServices();
+        this.addPrices();
+        this.showResult();
+        this.logger();
     },
     logger: () => {
         console.log(screens);
