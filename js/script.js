@@ -52,7 +52,7 @@ const appData = {
     init: function () {
         this.addTitle();
         startBtn.addEventListener('click', this.allCountScreens.bind(this));
-        resetBtn.addEventListener('click', this.resetValue.bind(this));
+        resetBtn.addEventListener('click', this.reset.bind(this));
         buttonPlus.addEventListener('click', this.addScreenBlock.bind(this));
         rollbackInput.addEventListener('input', this.addRollback.bind(this));
     },
@@ -75,15 +75,14 @@ const appData = {
         fullTotalCount.value = '';
         totalCount.value = '';
         totalCountRollback.value = '';
-        appData.deleteWritedValue();
 
-        appData.screenPrice = 0;
-        appData.servicePricesPercent = 0;
-        appData.servicePricesNumber = 0;
-        appData.fullPrice = 0;
-        appData.servicePercentPrice = 0;
-        appData.allCount = 0;
-        appData.rollback = 0;
+        this.screenPrice = 0;
+        this.servicePricesPercent = 0;
+        this.servicePricesNumber = 0;
+        this.fullPrice = 0;
+        this.servicePercentPrice = 0;
+        this.allCount = 0;
+        this.rollback = 0;
         startBtn.style.display = 'block';
         resetBtn.style.display = 'none';
     },
@@ -100,7 +99,10 @@ const appData = {
 
 
     },
-
+    reset: function () {
+        this.deleteWritedValue();
+        this.resetValue();
+    },
     addScreens: () => {
 
         appData.screens.length = 0;
