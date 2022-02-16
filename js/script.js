@@ -88,25 +88,16 @@ const appData = {
         resetBtn.style.display = 'none';
     },
     deleteWritedValue: () => {
-
+        let screens = document.querySelectorAll(".screen");
+        screens = [];
+        screens = document.querySelectorAll('.screen');
+        for (let i = 1; i < screens.length; i++) {
+            screens[i].remove();
+        }
+        screens[0].querySelector('input').value = '';
+        screens[0].querySelector('select').value = '';
         rollbackValue.textContent = '0 %';
-        otherItemsPercent.forEach((item) => {
-            const check = item.querySelector('input[type=checkbox]');
 
-            if (check.checked) {
-                check.checked = false;
-            }
-        });
-
-        otherItemsNumber.forEach((item) => {
-            const check = item.querySelector('input[type=checkbox]');
-
-
-            if (check.checked) {
-                check.checked = false;
-
-            }
-        });
 
     },
 
@@ -150,6 +141,7 @@ const appData = {
 
             if (check.checked) {
                 appData.servicesPercent[label.textContent] = +input.value;
+                check.checked = false;
             }
         });
 
@@ -160,6 +152,7 @@ const appData = {
 
             if (check.checked) {
                 appData.servicesNumber[label.textContent] = +input.value;
+                check.checked = false;
             }
         });
     },
